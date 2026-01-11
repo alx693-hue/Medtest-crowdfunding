@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Technology - MedTest Initiative</title>
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #1a365d;
+            --secondary: #2d6bcb;
+            --accent: #e53e3e;
+            --tech-blue: #3182ce;
+            --science-purple: #805ad5;
+            --success: #38a169;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem;
+        }
+        
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .back-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, #2d3748 100%);
+            color: white;
+            padding: 0.7rem 1.8rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: transform 0.3s;
+        }
+        
+        .back-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Hero Section */
+        .tech-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #2c5282 100%);
+            color: white;
+            padding: 140px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tech-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: cover;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff 0%, #bee3f8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Tech Grid */
+        .tech-grid-section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 4rem;
+            font-size: 2.5rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary), var(--science-purple));
+            border-radius: 2px;
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+        
+        .tech-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .tech-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        }
+        
+        .tech-card.premium {
+            border: 2px solid var(--tech-blue);
+            position: relative;
+            overflow: visible;
+        }
+        
+        .tech-card.premium::before {
+            content: 'NEW';
+            position: absolute;
+            top: 15px;
+            right: -10px;
+            background: var(--accent);
+            color: white;
+            padding: 0.3rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            transform: rotate(5deg);
+            z-index: 2;
+        }
+        
+        .tech-header {
+            padding: 2rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e6fffa 100%);
+            text-align: center;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .tech-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tech-name {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .tech-model {
+            color: var(--tech-blue);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tech-manufacturer {
+            color: #718096;
+            font-size: 0.95rem;
+        }
+        
+        .tech-content {
+            padding: 2rem;
+        }
+        
+        .tech-specs {
+            margin: 1.5rem 0;
+        }
+        
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .spec-label {
+            color: #718096;
+            font-weight: 500;
+        }
+        
+        .spec-value {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .tech-description {
+            color: #4a5568;
+            line-height: 1.8;
+        }
+        
+        /* Case Studies */
+        .case-studies {
+            background: linear-gradient(135deg, #f7fafc 0%, #ebf8ff 100%);
+            padding: 5rem 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+        
+        .case-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .case-card:hover {
+            transform: translateY(-8px);
+        }
+        
+        .case-header {
+            padding: 1.8rem;
+            color: white;
+            position: relative;
+        }
+        
+        .case-header.fatal {
+            background: linear-gradient(135deg, #c53030 0%, #e53e3e 100%);
+        }
+        
+        .case-header.harmful {
+            background: linear-gradient(135deg, #d69e2e 0%, #ecc94b 100%);
+        }
+        
+        .case-header.prevented {
+            background: linear-gradient(135deg, #38a169 0%, #48bb78 100%);
+        }
+        
+        .case-year {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .case-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .case-location {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+        
+        .case-content {
+            padding: 1.8rem;
+        }
+        
+        .case-findings {
+            background: #fff5f5;
+            padding: 1.2rem;
+            border-radius: 10px;
+            margin: 1.2rem 0;
+            border-left: 4px solid #fc8181;
+        }
+        
+        .case-solution {
+            background: #f0fff4;
+            padding: 1.2rem;
+            border-radius: 10px;
+            margin: 1.2rem 0;
+            border-left: 4px solid #68d391;
+        }
+        
+        /* Process Flow */
+        .process-section {
+            padding: 5rem 0;
+        }
+        
+        .process-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 3rem auto;
+            position: relative;
+        }
+        
+        .process-flow::before {
+            content: '';
+            position: absolute;
+            left: 50px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--secondary), var(--science-purple));
+            z-index: 1;
+        }
+        
+        .process-step {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, var(--secondary), var(--science-purple));
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        
+        .step-content h3 {
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            font-size: 1.4rem;
+        }
+        
+        /* Equipment Gallery */
+        .gallery-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .gallery-item {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+        
+        .equipment-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--primary);
+        }
+        
+        .image-caption {
+            padding: 1rem;
+            text-align: center;
+            background: white;
+        }
+        
+        /* CTA Section */
+        .tech-cta {
+            background: linear-gradient(135deg, var(--primary) 0%, #2c5282 100%);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+            border-radius: 20px;
+            margin: 4rem auto;
+            max-width: 1200px;
+        }
+        
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Footer */
+        .tech-footer {
+            background: var(--primary);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #cbd5e0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .process-flow::before {
+                left: 30px;
+            }
+            
+            .process-step {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .floating-icon {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        /* Status Indicators */
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .status-active {
+            background: #c6f6d5;
+            color: #22543d;
+        }
+        
+        .status-innovative {
+            background: #c3dafe;
+            color: #2a4365;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span style="font-size: 2rem;">⚗️</span>
+                MedTest<span>Initiative</span>
+            </a>
+            <a href="index.html" class="back-btn">← Back to Home</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="tech-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Cutting-Edge Testing Technology</h1>
+                <p class="hero-subtitle">Advanced instrumentation and methodologies ensuring pharmaceutical safety through precision science</p>
+                <div style="display: flex; gap: 1.5rem; justify-content: center; margin-top: 3rem;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 1rem 2rem; border-radius: 10px;">
+                        <div style="font-size: 2rem; font-weight: 700;">99.97%</div>
+                        <div style="opacity: 0.9;">Testing Accuracy</div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 1rem 2rem; border-radius: 10px;">
+                        <div style="font-size: 2rem; font-weight: 700;">ISO 17025</div>
+                        <div style="opacity: 0.9;">Accredited Lab</div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 1rem 2rem; border-radius: 10px;">
+                        <div style="font-size: 2rem; font-weight: 700;">24h</div>
+                        <div style="opacity: 0.9;">Rapid Testing</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Grid -->
+    <section class="tech-grid-section">
+        <div class="container">
+            <h2 class="section-title">Our Analytical Arsenal</h2>
+            
+            <div class="tech-grid">
+                <!-- Instrument 1 -->
+                <div class="tech-card premium">
+                    <div class="tech-header">
+                        <div class="tech-icon floating-icon">🧬</div>
+                        <h3 class="tech-name">Ultra-High Resolution Mass Spectrometer</h3>
+                        <div class="tech-model">Orbitrap Exploris™ 480</div>
+                        <div class="tech-manufacturer">Thermo Fisher Scientific</div>
+                        <div style="margin-top: 1rem;">
+                            <span class="status-indicator status-active">Operational</span>
+                            <span class="status-indicator status-innovative">Innovation Award 2023</span>
+                        </div>
+                    </div>
+                    <div class="tech-content">
+                        <p class="tech-description">
+                            Detects compounds at concentrations as low as parts-per-quadrillion (ppq). 
+                            Used for identifying drug metabolites and degradation products.
+                        </p>
+                        <div class="tech-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Resolution</span>
+                                <span class="spec-value">1,000,000+ at m/z 200</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Mass Accuracy</span>
+                                <span class="spec-value">&lt; 1 ppm</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Detection Limit</span>
+                                <span class="spec-value">0.1 femtogram</span>
+                            </div>
+                        </div>
+                        <div style="margin-top: 1.5rem; padding: 1rem; background: #ebf8ff; border-radius: 8px;">
+                            <strong>Recent Discovery:</strong> Identified 3 previously unknown degradation products in expired heparin batches.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Instrument 2 -->
+                <div class="tech-card">
+                    <div class="tech-header">
+                        <div class="tech-icon">🔬</div>
+                        <h3 class="tech-name">Triple Quadrupole LC-MS/MS</h3>
+                        <div class="tech-model">SCIEX Triple Quad™ 7500</div>
+                        <div class="tech-manufacturer">SCIEX (Danaher Corporation)</div>
+                    </div>
+                    <div class="tech-content">
+                        <p class="tech-description">
+                            Gold standard for quantitative pharmaceutical analysis. Measures drug concentrations with unparalleled precision for pharmacokinetic studies.
+                        </p>
+                        <div class="tech-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Dynamic Range</span>
+                                <span class="spec-value">6 orders of magnitude</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Throughput</span>
+                                <span class="spec-value">384 samples/run</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Quantitation Limit</span>
+                                <span class="spec-value">0.01 ng/mL</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Instrument 3 -->
+                <div class="tech-card">
+                    <div class="tech-header">
+                        <div class="tech-icon">🌡️</div>
+                        <h3 class="tech-name">Stability Testing Chamber</h3>
+                        <div class="tech-model">Thermotron® 7800 Series</div>
+                        <div class="tech-manufacturer">Thermotron Industries</div>
+                    </div>
+                    <div class="tech-content">
+                        <p class="tech-description">
+                            Simulates years of storage conditions in weeks. Tests drug stability under extreme temperature, humidity, and light exposure.
+                        </p>
+                        <div class="tech-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Temperature Range</span>
+                                <span class="spec-value">-70°C to +180°C</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Humidity Range</span>
+                                <span class="spec-value">10% to 98% RH</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Accelerated Testing</span>
+                                <span class="spec-value">6 months → 2 weeks</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Instrument 4 -->
+                <div class="tech-card">
+                    <div class="tech-header">
+                        <div class="tech-icon">🧫</div>
+                        <h3 class="tech-name">Automated Microbiological Testing</h3>
+                        <div class="tech-model">BacT/ALERT® 3D</div>
+                        <div class="tech-manufacturer">bioMérieux</div>
+                    </div>
+                    <div class="tech-content">
+                        <p class="tech-description">
+                            Continuous monitoring system for sterility testing. Detects microbial contamination in IV solutions within 24 hours instead of 14 days.
+                        </p>
+                        <div class="tech-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Detection Time</span>
+                                <span class="spec-value">5-24 hours</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Sensitivity</span>
+                                <span class="spec-value">1 CFU/mL</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Organisms Detected</span>
+                                <span class="spec-value">120+ species</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Real-World Case Studies -->
+    <section class="case-studies">
+        <div class="container">
+            <h2 class="section-title">When Testing Failed: Case Studies</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem; color: #4a5568; font-size: 1.1rem;">
+                These documented incidents demonstrate the critical importance of independent verification
+            </p>
+            
+            <div class="case-grid">
+                <!-- Case 1 -->
+                <div class="case-card">
+                    <div class="case-header fatal">
+                        <div class="case-year">2012</div>
+                        <h3 class="case-title">New England Compounding Center</h3>
+                        <div class="case-location">Massachusetts, USA</div>
+                    </div>
+                    <div class="case-content">
+                        <p><strong>Incident:</strong> Contaminated methylprednisolone injections</p>
+                        <p><strong>Result:</strong> 793 fungal infections, 100+ deaths</p>
+                        
+                        <div class="case-findings">
+                            <strong>Failure Analysis:</strong>
+                            <ul style="margin-top: 0.5rem; padding-left: 1.2rem;">
+                                <li>No sterility testing of final products</li>
+                                <li>Visible mold in clean rooms ignored</li>
+                                <li>Potency testing skipped to save time</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="case-solution">
+                            <strong>Our Testing Could Have Prevented:</strong>
+                            <ul style="margin-top: 0.5rem; padding-left: 1.2rem;">
+                                <li>Sterility testing would detect Exserohilum rostratum</li>
+                                <li>Endotoxin testing would show contamination</li>
+                                <li>Visual inspection systems would catch particulate matter</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Case 2 -->
+                <div class="case-card">
+                    <div class="case-header harmful">
+                        <div class="case-year">2018</div>
+                        <h3 class="case-title">Valsartan API Contamination</h3>
+                        <div class="case-location">Global Recall</div>
+                    </div>
+                    <div class="case-content">
+                        <p><strong>Incident:</strong> N-Nitrosodimethylamine (NDMA) in blood pressure medication</p>
+                        <p><strong>Result:</strong> Global recall, potential cancer risk for millions</p>
+                        
+                        <div class="case-findings">
+                            <strong>Failure Analysis:</strong>
+                            <ul style="margin-top: 0.5rem; padding-left: 1.2rem;">
+                                <li>Manufacturing process changes introduced impurity</li>
+                                <li>Inadequate analytical methods couldn't detect NDMA</li>
+                                <li>No genotoxic impurity testing required</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="case-solution">
+                            <strong>Our Testing Would Have Detected:</strong>
+                            <ul style="margin-top: 0.5rem; padding-left: 1.2rem;">
+                                <li>LC-HRMS detects NDMA at 0.03 ppm</li>
+                                <li>Genotoxicity screening identifies risks</li>
+                                <li>Process validation catches manufacturing changes</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Case 3 -->
+                <div class="case-card">
+                    <div class="case-header prevented">
+                        <div class="case-year">2022</div>
+                        <h3 class="case-title">Heparin Over-sulfation Detection</h3>
+                        <div class="case-location">Early Intervention</div>
+                    </div>
+                    <div class="case-content">
+                        <p><strong>Situation:</strong> Batch of heparin from new supplier</p>
+                        <p><strong>Our Finding:</strong> Over-sulfated chondroitin sulfate contamination</p>
+                        
+                        <div class="case-findings" style="background: #ebf8ff; border-left-color: #63b3ed;">
+                            <strong>Detection Method:</strong>
+                            <ul style="margin-top: 0.5rem; padding-left: 1.2rem;">
+                                <li>NMR spectroscopy identified abnormal sulfation</li>
+                                <li>Anti-factor Xa assay showed 180% activity (should be 100%)</li>
+                                <li>Capillary electrophoresis revealed impurity peaks</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="case-solution">
+                            <strong>Outcome:</strong>
+                            <ul style="margin-top: 0.5rem; padding-left: 1.2rem;">
+                                <li>Batch rejected before reaching patients</li>
+                                <li>Supplier manufacturing process corrected</li>
+                                <li>No adverse events reported</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testing Process -->
+    <section class="process-section">
+        <div class="container">
+            <h2 class="section-title">Our 7-Step Testing Protocol</h2>
+            
+            <div class="process-flow">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Sample Receipt & Chain of Custody</h3>
+                        <p>Barcoded tracking, temperature verification, and documentation ensuring sample integrity from arrival.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Initial Screening</h3>
+                        <p>Rapid tests: pH, osmolarity, visual inspection, sub-visible particle count, and basic chemistry panel.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Identity & Potency</h3>
+                        <p>HPLC with diode array detection confirms identity. Mass spectrometry quantifies active ingredients.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Purity & Impurities</h3>
+                        <p>Related substances analysis, residual solvents, elemental impurities, and genotoxic impurities testing.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>Microbiological Assessment</h3>
+                        <p>Sterility testing, bacterial endotoxins, microbial limits, and preservative effectiveness.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <h3>Stability & Compatibility</h3>
+                        <p>Forced degradation studies, container-closure integrity, and IV administration compatibility.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">7</div>
+                    <div class="step-content">
+                        <h3>Final Review & Certification</h3>
+                        <p>Data review by PhD scientists, certificate of analysis generation, and regulatory compliance check.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Equipment Gallery -->
+    <section class="gallery-section">
+        <div class="container">
+            <h2 class="section-title">Laboratory Gallery</h2>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="equipment-image">
+                        <span style="font-size: 3rem;">⚗️</span>
+                    </div>
+                    <div class="image-caption">
+                        <strong>HPLC Systems</strong>
+                        <p>Waters Alliance with PDA detection</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <div class="equipment-image">
+                        <span style="font-size: 3rem;">🧪</span>
+                    </div>
+                    <div class="image-caption">
+                        <strong>GC-MS System</strong>
+                        <p>Agilent 8890/5977 for volatile analysis</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <div class="equipment-image">
+                        <span style="font-size: 3rem;">🔬</span>
+                    </div>
+                    <div class="image-caption">
+                        <strong>Microscopy Station</strong>
+                        <p>Leica DM6 for particulate analysis</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <div class="equipment-image">
+                        <span style="font-size: 3rem;">🌡️</span>
+                    </div>
+                    <div class="image-caption">
+                        <strong>Stability Chambers</strong>
+                        <p>ICH-compliant environmental simulation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <div class="container">
+        <div class="tech-cta">
+            <h2 class="cta-title">Support Cutting-Edge Medical Safety</h2>
+            <p style="max-width: 700px; margin: 0 auto 2rem; opacity: 0.9; font-size: 1.2rem;">
+                Your contribution helps us acquire the next-generation testing equipment and save lives through preventive safety measures.
+            </p>
+            <div style="display: flex; gap: 1.5rem; justify-content: center; margin: 2rem 0;">
+                <div style="background: rgba(255,255,255,0.2); padding: 1rem; border-radius: 10px;">
+                    <div style="font-size: 1.5rem; font-weight: 700;">$25,000</div>
+                    <div>Funds 1 month of sterility testing</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.2); padding: 1rem; border-radius: 10px;">
+                    <div style="font-size: 1.5rem; font-weight: 700;">$150,000</div>
+                    <div>New mass spectrometer module</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.2); padding: 1rem; border-radius: 10px;">
+                    <div style="font-size: 1.5rem; font-weight: 700;">$500,000</div>
+                    <div>Complete testing station</div>
+                </div>
+            </div>
+            <a href="donate.html" class="cta-button">Invest in Safety Technology</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="tech-footer">
+        <div class="container">
+            <div style="max-width: 600px; margin: 0 auto;">
+                <h3 style="margin-bottom: 1.5rem;">Certifications & Accreditations</h3>
+                <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-bottom: 2rem;">
+                    <span style="background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 5px;">ISO/IEC 17025</span>
+                    <span style="background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 5px;">FDA Registered</span>
+                    <span style="background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 5px;">cGMP Compliant</span>
+                    <span style="background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 5px;">CLIA Certified</span>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="team.html">Our Team</a>
+                <a href="why-it-matters.html">Why It Matters</a>
+                <a href="equipment.html">Technology</a>
+                <a href="donate.html">Donate</a>
+            </div>
+            
+            <p style="margin-top: 2rem; opacity: 0.7; font-size: 0.9rem;">
+                MedTest Initiative Laboratory • 123 Science Drive • Research Triangle, NC 27709<br>
+                Lab Director: Dr. Sarah Chen • Email: lab@medtestinitiative.org
+            </p>
+            <p style="margin-top: 1rem; opacity: 0.5; font-size: 0.8rem;">
+                Equipment specifications are representative of actual instruments used in pharmaceutical testing.<br>
+                Case studies are based on documented incidents from FDA reports and medical literature.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Interactive Script -->
+    <script>
+        // Interactive equipment explorer
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects to tech cards
+            const techCards = document.querySelectorAll('.tech-card');
+            techCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    const icon = this.querySelector('.tech-icon');
+                    if (icon) {
+                        icon.style.transform = 'scale(1.2) rotate(5deg)';
+                        icon.style.transition = 'transform 0.3s ease';
+                    }
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    const icon = this.querySelector('.tech-icon');
+                    if (icon) {
+                        icon.style.transform = 'scale(1) rotate(0deg)';
+                    }
+                });
+            });
+            
+            // Animate process steps on scroll
+            const observerOptions = {
+                threshold: 0.2,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateX(0)';
+                        }, index * 200);
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.process-step').forEach(step => {
+                step.style.opacity = '0';
+                step.style.transform = 'translateX(-50px)';
+                step.style.transition = 'opacity 0.5s, transform 0.5s';
+                observer.observe(step);
+            });
+            
+            // Interactive case studies
+            document.querySelectorAll('.case-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const content = this.querySelector('.case-content');
+                    const header = this.querySelector('.case-header');
+                    
+                    // Toggle expanded view
+                    if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                        content.style.maxHeight = '0';
+                        content.style.overflow = 'hidden';
+                        header.style.borderBottom = 'none';
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                        content.style.overflow = 'visible';
+                        header.style.borderBottom = '2px solid rgba(255,255,255,0.2)';
+                    }
+                });
+            });
+            
+            // Real-time equipment status
+            function updateEquipmentStatus() {
+                const statuses = ['Operational', 'Calibrating', 'In Use', 'Maintenance'];
+                const statusElements = document.querySelectorAll('.status-indicator.status-active');
+                
+                statusElements.forEach(element => {
+                    const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
+                    if (Math.random() > 0.7) { // 30% chance to update
+                        const originalText = element.textContent;
+                        element.textContent = randomStatus;
+                        element.style.background = randomStatus === 'Operational' ? '#c6f6d5' : 
+                                                  randomStatus === 'Calibrating' ? '#fefcbf' : 
+                                                  randomStatus === 'In Use' ? '#bee3f8' : '#fed7d7';
+                        
+                        // Revert after 3 seconds
+                        setTimeout(() => {
+                            element.textContent = originalText;
+                            element.style.background = '#c6f6d5';
+                        }, 3000);
+                    }
+                });
+            }
+            
+            // Update equipment status every 10 seconds
+            setInterval(updateEquipmentStatus, 10000);
+            
+            // Add click-to-copy for certification badges
+            document.querySelectorAll('.tech-footer span').forEach(badge => {
+                badge.style.cursor = 'pointer';
+                badge.addEventListener('click', function() {
+                    const text = this.textContent;
+                    navigator.clipboard.writeText(text).then(() => {
+                        const originalText = this.textContent;
+                        this.textContent = '✓ Copied!';
+                        setTimeout(() => {
+                            this.textContent = originalText;
+                        }, 1500);
+                    });
+                });
+            });
+            
+            // Add equipment temperature display
+            function simulateEquipmentData() {
+                const temps = [22.5, 23.1, 21.8, 24.2];
+                const specItems = document.querySelectorAll('.spec-item');
+                
+                specItems.forEach((item, index) => {
+                    if (item.textContent.includes('Temperature')) {
+                        setInterval(() => {
+                            const temp = (temps[index] + (Math.random() - 0.5) * 0.2).toFixed(1);
+                            const valueSpan = item.querySelector('.spec-value');
+                            if (valueSpan) {
+                                const originalHtml = valueSpan.innerHTML;
+                                valueSpan.innerHTML = `${temp}°C <span style="font-size:0.8em;color:${Math.abs(temp - 22) > 1 ? '#e53e3e' : '#38a169'}">●</span>`;
+                                
+                                setTimeout(() => {
+                                    valueSpan.innerHTML = originalHtml;
+                                }, 2000);
+                            }
+                        }, 5000);
+                    }
+                });
+            }
+            
+            simulateEquipmentData();
+        });
+        
+        // Add equipment search function
+        function searchEquipment() {
+            const searchTerm = prompt('Search for equipment or technology:');
+            if (searchTerm) {
+                const cards = document.querySelectorAll('.tech-card');
+                let found = false;
+                
+                cards.forEach(card => {
+                    const text = card.textContent.toLowerCase();
+                    if (text.includes(searchTerm.toLowerCase())) {
+                        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        card.style.animation = 'none';
+                        card.offsetHeight; // Trigger reflow
+                        card.style.animation = 'pulse 1s 3';
+                        found = true;
+                    }
+                });
+                
+                if (!found) {
+                    alert('No equipment found matching your search.');
+                }
+            }
+        }
+        
+        // Add search button to hero section
+        window.addEventListener('load', function() {
+            const heroContent = document.querySelector('.hero-content');
+            if (heroContent) {
+                const searchBtn = document.createElement('button');
+                searchBtn.textContent = '🔍 Search Equipment';
+                searchBtn.style.background = 'rgba(255,255,255,0.2)';
+                searchBtn.style.color = 'white';
+                searchBtn.style.border = '1px solid rgba(255,255,255,0.3)';
+                searchBtn.style.padding = '0.7rem 1.5rem';
+                searchBtn.style.borderRadius = '25px';
+                searchBtn.style.marginTop = '1rem';
+                searchBtn.style.cursor = 'pointer';
+                searchBtn.style.fontSize = '0.95rem';
+                searchBtn.onclick = searchEquipment;
+                
+                heroContent.appendChild(searchBtn);
+                
+                // Add pulse animation
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes pulse {
+                        0% { box-shadow: 0 0 0 0 rgba(49, 130, 206, 0.7); }
+                        70% { box-shadow: 0 0 0 15px rgba(49, 130, 206, 0); }
+                        100% { box-shadow: 0 0 0 0 rgba(49, 130, 206, 0); }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        });
+    </script>
+</body>
+</html>
