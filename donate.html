@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Our Mission - MedTest Initiative</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cleave.js@1.6.0/dist/cleave.min.js"></script>
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #1a365d;
+            --secondary: #2d6bcb;
+            --accent: #e53e3e;
+            --bitcoin: #f7931a;
+            --ethereum: #627eea;
+            --usdt: #26a17b;
+            --success: #38a169;
+            --whatsapp: #25d366;
+            --telegram: #0088cc;
+            --email: #ea4335;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem;
+        }
+        
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .back-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, #2d3748 100%);
+            color: white;
+            padding: 0.7rem 1.8rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: transform 0.3s;
+        }
+        
+        .back-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Hero Section */
+        .donate-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #2c5282 100%);
+            color: white;
+            padding: 140px 0 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff 0%, #bee3f8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        
+        /* Main Content Grid */
+        .donation-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            padding: 5rem 0;
+        }
+        
+        @media (max-width: 1024px) {
+            .donation-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Quick Donate Section */
+        .quick-donate {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            color: var(--primary);
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .section-title i {
+            font-size: 1.5rem;
+        }
+        
+        .amount-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .amount-btn {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 1.2rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary);
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .amount-btn:hover {
+            background: var(--secondary);
+            color: white;
+            border-color: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        .amount-btn.active {
+            background: var(--secondary);
+            color: white;
+            border-color: var(--secondary);
+            box-shadow: 0 5px 15px rgba(45, 107, 203, 0.3);
+        }
+        
+        .amount-btn.popular::after {
+            content: 'Most Popular';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: var(--accent);
+            color: white;
+            padding: 0.3rem 1rem;
+            font-size: 0.7rem;
+            border-radius: 20px;
+            transform: rotate(15deg);
+        }
+        
+        .custom-amount {
+            margin: 2rem 0;
+        }
+        
+        .custom-amount label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #4a5568;
+            font-weight: 500;
+        }
+        
+        .amount-input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-align: center;
+            transition: border-color 0.3s;
+        }
+        
+        .amount-input:focus {
+            outline: none;
+            border-color: var(--secondary);
+        }
+        
+        .currency-selector {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .currency-tab {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        
+        .currency-tab:hover {
+            border-color: var(--secondary);
+        }
+        
+        .currency-tab.active {
+            border-color: var(--secondary);
+            background: var(--secondary);
+            color: white;
+        }
+        
+        /* Crypto QR Section */
+        .crypto-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .crypto-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .crypto-option {
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .crypto-option:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .crypto-option.active {
+            border-color: currentColor;
+        }
+        
+        .crypto-option.bitcoin {
+            color: var(--bitcoin);
+        }
+        
+        .crypto-option.ethereum {
+            color: var(--ethereum);
+        }
+        
+        .crypto-option.usdt {
+            color: var(--usdt);
+        }
+        
+        .crypto-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .crypto-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .crypto-network {
+            font-size: 0.9rem;
+            color: #718096;
+            margin-bottom: 1rem;
+        }
+        
+        .qr-container {
+            background: white;
+            border: 2px dashed #e2e8f0;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #qrcode {
+            margin: 1rem 0;
+        }
+        
+        .crypto-address {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+            word-break: break-all;
+            font-family: monospace;
+            font-size: 0.9rem;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        
+        /* Contact Options */
+        .contact-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            margin-top: 3rem;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-card {
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            color: white;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .contact-card.email {
+            background: linear-gradient(135deg, var(--email) 0%, #c5221f 100%);
+        }
+        
+        .contact-card.whatsapp {
+            background: linear-gradient(135deg, var(--whatsapp) 0%, #128c7e 100%);
+        }
+        
+        .contact-card.telegram {
+            background: linear-gradient(135deg, var(--telegram) 0%, #005c8a 100%);
+        }
+        
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-desc {
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-top: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .contact-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Investment Section */
+        .investment-section {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            color: white;
+            margin-top: 3rem;
+        }
+        
+        .investment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .investment-tier {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .tier-header {
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tier-name {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #bee3f8;
+        }
+        
+        .tier-amount {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .tier-features {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+        
+        .tier-features li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .tier-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+        }
+        
+        /* Progress Bar */
+        .progress-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-top: 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .progress-container {
+            margin: 2rem 0;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: #e2e8f0;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary), var(--success));
+            border-radius: 15px;
+            transition: width 1s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.4),
+                transparent
+            );
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        /* Footer */
+        .donate-footer {
+            background: var(--primary);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin-top: 5rem;
+        }
+        
+        .disclaimer {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem auto;
+            max-width: 800px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .donate-hero {
+                padding: 120px 0 40px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .amount-buttons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .investment-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Animations */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.8rem;
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span style="font-size: 2rem;">❤️</span>
+                MedTest<span>Initiative</span>
+            </a>
+            <a href="index.html" class="back-btn">← Back to Home</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="donate-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Fund Safer Medicine</h1>
+                <p class="hero-subtitle">Your support enables independent verification of life-saving medications. Every donation tests critical drugs.</p>
+                <div style="display: flex; gap: 1.5rem; justify-content: center; margin-top: 2rem;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 1rem 2rem; border-radius: 10px;">
+                        <div style="font-size: 2rem; font-weight: 700; color: #68d391;">$24,850</div>
+                        <div style="opacity: 0.9;">Raised This Month</div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 1rem 2rem; border-radius: 10px;">
+                        <div style="font-size: 2rem; font-weight: 700; color: #fbb6ce;">89</div>
+                        <div style="opacity: 0.9;">Active Supporters</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Donation Area -->
+    <div class="container">
+        <div class="donation-grid">
+            <!-- Left: Quick Donation -->
+            <div class="quick-donate">
+                <h2 class="section-title">
+                    <i>💰</i> Make a Quick Donation
+                </h2>
+                
+                <div class="amount-buttons">
+                    <button class="amount-btn" data-amount="25">$25</button>
+                    <button class="amount-btn" data-amount="50">$50</button>
+                    <button class="amount-btn popular" data-amount="100">$100</button>
+                    <button class="amount-btn" data-amount="250">$250</button>
+                    <button class="amount-btn" data-amount="500">$500</button>
+                    <button class="amount-btn" data-amount="1000">$1,000</button>
+                </div>
+                
+                <div class="custom-amount">
+                    <label for="custom-amount">Or Enter Custom Amount</label>
+                    <input type="text" id="custom-amount" class="amount-input" placeholder="0.00" value="100">
+                </div>
+                
+                <div class="currency-selector">
+                    <div class="currency-tab active" data-currency="USD">USD ($)</div>
+                    <div class="currency-tab" data-currency="EUR">EUR (€)</div>
+                    <div class="currency-tab" data-currency="GBP">GBP (£)</div>
+                </div>
+                
+                <div style="margin-top: 2rem;">
+                    <label style="display: block; margin-bottom: 1rem; color: #4a5568; font-weight: 500;">
+                        Select Payment Method
+                    </label>
+                    <div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+                        <button id="crypto-btn" class="currency-tab active" style="flex: 1;">
+                            <i>₿</i> Crypto
+                        </button>
+                        <button id="bank-btn" class="currency-tab" style="flex: 1;">
+                            <i>🏦</i> Bank Transfer
+                        </button>
+                    </div>
+                </div>
+                
+                <button id="generate-qr-btn" class="contact-btn" style="background: var(--secondary); color: white; width: 100%; padding: 1.2rem; font-size: 1.2rem;">
+                    <i>🔄</i> Generate Payment QR Code
+                </button>
+                
+                <div style="margin-top: 2rem; padding: 1.5rem; background: #f0fff4; border-radius: 10px; border-left: 4px solid var(--success);">
+                    <strong>What Your Donation Does:</strong>
+                    <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                        <li>$100 tests one batch of life-saving medication</li>
+                        <li>$500 funds sterility testing for 10+ drugs</li>
+                        <li>$1,000 enables stability studies for new formulations</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Right: Crypto QR Section -->
+            <div class="crypto-section">
+                <h2 class="section-title">
+                    <i>₿</i> Crypto Donations
+                </h2>
+                <p style="color: #718096; margin-bottom: 2rem;">Scan QR code or copy address to send crypto</p>
+                
+                <div class="crypto-options">
+                    <div class="crypto-option bitcoin active" data-crypto="bitcoin">
+                        <div class="crypto-icon">₿</div>
+                        <div class="crypto-name">Bitcoin (BTC)</div>
+                        <div class="crypto-network">Bitcoin Network</div>
+                        <div style="font-size: 0.8rem; color: #718096;">Min: 0.001 BTC</div>
+                    </div>
+                    
+                    <div class="crypto-option ethereum" data-crypto="ethereum">
+                        <div class="crypto-icon">Ξ</div>
+                        <div class="crypto-name">Ethereum (ETH)</div>
+                        <div class="crypto-network">ERC20 Network</div>
+                        <div style="font-size: 0.8rem; color: #718096;">Min: 0.01 ETH</div>
+                    </div>
+                    
+                    <div class="crypto-option usdt" data-crypto="usdt">
+                        <div class="crypto-icon">💲</div>
+                        <div class="crypto-name">USDT</div>
+                        <div class="crypto-network">ERC20 / TRC20</div>
+                        <div style="font-size: 0.8rem; color: #718096;">Stablecoin</div>
+                    </div>
+                </div>
+                
+                <div class="qr-container">
+                    <div id="qrcode"></div>
+                    <div style="margin: 1rem 0; color: #4a5568;">
+                        Scan QR code with your wallet
+                    </div>
+                    
+                    <div class="crypto-address" id="crypto-address">
+                        <span id="address-text">bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</span>
+                        <button class="copy-btn" onclick="copyAddress()">
+                            <i>📋</i> Copy
+                        </button>
+                    </div>
+                    
+                    <div style="margin-top: 1rem; font-size: 0.9rem; color: #718096;">
+                        <div id="conversion-rate">$100 ≈ 0.0021 BTC</div>
+                        <div style="margin-top: 0.5rem; font-size: 0.8rem;">
+                            Updated: <span id="rate-time">Just now</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: #fff5f5; padding: 1rem; border-radius: 10px; margin-top: 2rem; border-left: 4px solid var(--accent);">
+                    <strong>⚠️ Important:</strong>
+                    <ul style="margin-top: 0.5rem; padding-left: 1.2rem; font-size: 0.9rem;">
+                        <li>Send only BTC to Bitcoin address</li>
+                        <li>Include network fees for faster confirmation</li>
+                        <li>Contact us if you need a payment receipt</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Investment Tiers -->
+        <div class="investment-section">
+            <h2 style="color: white; font-size: 2.2rem; margin-bottom: 1rem; text-align: center;">
+                <i>💼</i> Investment Opportunities
+            </h2>
+            <p style="text-align: center; opacity: 0.9; max-width: 700px; margin: 0 auto 3rem;">
+                For investors seeking to support medical safety innovation while receiving exclusive benefits
+            </p>
+            
+            <div class="investment-grid">
+                <div class="investment-tier">
+                    <div class="tier-header">
+                        <div class="tier-name">Research Partner</div>
+                        <div class="tier-amount">$10,000+</div>
+                    </div>
+                    <ul class="tier-features">
+                        <li>Quarterly research reports</li>
+                        <li>Lab tour for your team</li>
+                        <li>Recognition on our website</li>
+                        <li>Annual impact report</li>
+                        <li>Tax deductible receipt</li>
+                    </ul>
+                    <button class="contact-btn" onclick="contactInvestment('Research Partner - $10,000')">
+                        <i>💼</i> Inquire About Investment
+                    </button>
+                </div>
+                
+                <div class="investment-tier" style="border: 2px solid var(--secondary);">
+                    <div class="tier-header">
+                        <div class="tier-name" style="color: #90cdf4;">Strategic Investor</div>
+                        <div class="tier-amount">$50,000+</div>
+                    </div>
+                    <ul class="tier-features">
+                        <li>All Research Partner benefits</li>
+                        <li>Monthly advisory meetings</li>
+                        <li>Named equipment sponsorship</li>
+                        <li>Priority access to research data</li>
+                        <li>Invitation to board meetings</li>
+                        <li>Media recognition package</li>
+                    </ul>
+                    <button class="contact-btn pulse" onclick="contactInvestment('Strategic Investor - $50,000')">
+                        <i>⭐</i> Become Strategic Investor
+                    </button>
+                </div>
+                
+                <div class="investment-tier">
+                    <div class="tier-header">
+                        <div class="tier-name">Visionary Patron</div>
+                        <div class="tier-amount">$100,000+</div>
+                    </div>
+                    <ul class="tier-features">
+                        <li>All Strategic Investor benefits</li>
+                        <li>Custom research projects</li>
+                        <li>Dedicated research staff recognition</li>
+                        <li>Exclusive VIP lab events</li>
+                        <li>Global speaking opportunities</li>
+                        <li>Legacy naming opportunities</li>
+                    </ul>
+                    <button class="contact-btn" onclick="contactInvestment('Visionary Patron - $100,000')">
+                        <i>👑</i> Discuss Patronage
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Contact Options -->
+        <div class="contact-section">
+            <h2 class="section-title">
+                <i>📞</i> Need Assistance?
+            </h2>
+            <p style="color: #4a5568; margin-bottom: 2rem;">Contact our development team for personalized assistance with donations or investments</p>
+            
+            <div class="contact-grid">
+                <a href="mailto:investments@medtestinitiative.org?subject=Investment%20Inquiry&body=Hello,%20I'm%20interested%20in%20learning%20more%20about%20investment%20opportunities." class="contact-card email">
+                    <div class="contact-icon">📧</div>
+                    <div class="contact-title">Email Us</div>
+                    <div class="contact-desc">For detailed investment proposals and documentation</div>
+                    <div class="contact-btn">investments@medtestinitiative.org</div>
+                </a>
+                
+                <a href="https://wa.me/15551234567?text=Hello%20MedTest%20Initiative,%20I'm%20interested%20in%20supporting%20your%20work%20and%20would%20like%20more%20information." target="_blank" class="contact-card whatsapp">
+                    <div class="contact-icon">💬</div>
+                    <div class="contact-title">WhatsApp</div>
+                    <div class="contact-desc">Instant messaging for quick questions and guidance</div>
+                    <div class="contact-btn">+1 (555) 123-4567</div>
+                </a>
+                
+                <a href="https://t.me/medtestinitiative" target="_blank" class="contact-card telegram">
+                    <div class="contact-icon">📱</div>
+                    <div class="contact-title">Telegram</div>
+                    <div class="contact-desc">Join our investor community channel</div>
+                    <div class="contact-btn">@medtestinitiative</div>
+                </a>
+            </div>
+            
+            <div style="margin-top: 3rem; padding: 2rem; background: #f8fafc; border-radius: 15px;">
+                <h3 style="color: var(--primary); margin-bottom: 1rem;">Schedule a Consultation</h3>
+                <p style="color: #718096; margin-bottom: 1.5rem;">Book a 30-minute video call with our Director of Development</p>
+                <button class="contact-btn" style="background: var(--secondary); color: white; padding: 1rem 2rem;" onclick="scheduleCall()">
+                    <i>📅</i> Book Appointment
+                </button>
+            </div>
+        </div>
+        
+        <!-- Progress Tracking -->
+        <div class="progress-section">
+            <h2 class="section-title">
+                <i>📊</i> Funding Progress
+            </h2>
+            <p style="color: #718096; margin-bottom: 2rem;">Track our progress toward critical equipment and research goals</p>
+            
+            <div class="progress-container">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <div>
+                        <strong>New Mass Spectrometer</strong>
+                        <div style="font-size: 0.9rem; color: #718096;">Goal: $350,000</div>
+                    </div>
+                    <div style="font-size: 1.5rem; font-weight: 700; color: var(--secondary);">
+                        $247,500
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 70%;"></div>
+                </div>
+                <div style="text-align: right; font-size: 0.9rem; color: #718096;">
+                    70% funded • 42 supporters
+                </div>
+            </div>
+            
+            <div class="progress-container">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <div>
+                        <strong>Annual Research Fund</strong>
+                        <div style="font-size: 0.9rem; color: #718096;">Goal: $500,000</div>
+                    </div>
+                    <div style="font-size: 1.5rem; font-weight: 700; color: var(--success);">
+                        $312,000
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 62%;"></div>
+                </div>
+                <div style="text-align: right; font-size: 0.9rem; color: #718096;">
+                    62% funded • 89 supporters
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="donate-footer">
+        <div class="container">
+            <div class="disclaimer">
+                <strong>Legal Disclaimer:</strong> MedTest Initiative is a registered 501(c)(3) non-profit organization. 
+                All donations are tax-deductible to the extent permitted by law. Cryptocurrency donations are processed 
+                as non-cash charitable contributions. Please consult with your tax advisor regarding cryptocurrency 
+                donation tax implications. EIN: 12-3456789
+            </div>
+            
+            <div style="display: flex; justify-content: center; gap: 2rem; margin: 2rem 0; flex-wrap: wrap;">
+                <a href="index.html" style="color: #cbd5e0; text-decoration: none;">Home</a>
+                <a href="team.html" style="color: #cbd5e0; text-decoration: none;">Our Team</a>
+                <a href="why-it-matters.html" style="color: #cbd5e0; text-decoration: none;">Why It Matters</a>
+                <a href="equipment.html" style="color: #cbd5e0; text-decoration: none;">Our Technology</a>
+                <a href="donate.html" style="color: white; font-weight: 600; text-decoration: none;">Donate</a>
+            </div>
+            
+            <p style="margin-top: 2rem; opacity: 0.7; font-size: 0.9rem;">
+                MedTest Initiative • 123 Research Drive • Innovation Center, IC 12345<br>
+                Development Office: +1 (555) 123-4567 • donations@medtestinitiative.org
+            </p>
+            <p style="margin-top: 1rem; opacity: 0.5; font-size: 0.8rem;">
+                This site uses secure encryption. Never share your private keys. Verify addresses before sending.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Main Script -->
+    <script>
+        // Configuration - REAL ADDRESSES (Replace with your actual addresses)
+        const cryptoAddresses = {
+            bitcoin: {
+                address: "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+                network: "Bitcoin"
+            },
+            ethereum: {
+                address: "0x742d35Cc6634C0532925a3b844Bc9e0F3B1f1e1e",
+                network: "ERC20"
+            },
+            usdt: {
+                address: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+                network: "ERC20/TRC20"
+            }
+        };
+
+        // Current state
+        let currentAmount = 100;
+        let currentCurrency = "USD";
+        let currentCrypto = "bitcoin";
+        let exchangeRates = {
+            USD: 1,
+            EUR: 0.85,
+            GBP: 0.73,
+            BTC: 0.000021,
+            ETH: 0.00042,
+            USDT: 1
+        };
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Amount buttons
+            document.querySelectorAll('.amount-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentAmount = parseFloat(this.dataset.amount);
+                    document.getElementById('custom-amount').value = currentAmount.toFixed(2);
+                    updateQRCode();
+                });
+            });
+
+            // Custom amount input
+            const amountInput = document.getElementById('custom-amount');
+            const cleave = new Cleave(amountInput, {
+                numeral: true,
+                numeralDecimalMark: '.',
+                delimiter: ',',
+                numeralDecimalScale: 2
+            });
+
+            amountInput.addEventListener('input', function() {
+                currentAmount = parseFloat(cleave.getRawValue()) || 0;
+                if (currentAmount > 0) {
+                    document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+                }
+                updateQRCode();
+            });
+
+            // Currency tabs
+            document.querySelectorAll('.currency-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    if (this.id === 'crypto-btn' || this.id === 'bank-btn') {
+                        document.querySelectorAll('.currency-tab').forEach(t => {
+                            if (t.id === 'crypto-btn' || t.id === 'bank-btn') {
+                                t.classList.remove('active');
+                            }
+                        });
+                        this.classList.add('active');
+                        
+                        if (this.id === 'crypto-btn') {
+                            document.querySelector('.crypto-section').style.display = 'block';
+                        } else {
+                            document.querySelector('.crypto-section').style.display = 'none';
+                        }
+                        return;
+                    }
+                    
+                    document.querySelectorAll('.currency-tab').forEach(t => {
+                        if (!t.id) t.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    currentCurrency = this.dataset.currency;
+                    updateQRCode();
+                });
+            });
+
+            // Crypto options
+            document.querySelectorAll('.crypto-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    document.querySelectorAll('.crypto-option').forEach(o => o.classList.remove('active'));
+                    this.classList.add('active');
+                    currentCrypto = this.dataset.crypto;
+                    updateQRCode();
+                });
+            });
+
+            // Generate QR button
+            document.getElementById('generate-qr-btn').addEventListener('click', function() {
+                updateQRCode();
+                
+                // Animation effect
+                this.innerHTML = '<i>✓</i> QR Code Generated!';
+                this.style.background = 'var(--success)';
+                
+                setTimeout(() => {
+                    this.innerHTML = '<i>🔄</i> Generate Payment QR Code';
+                    this.style.background = 'var(--secondary)';
+                }, 2000);
+            });
+
+            // Simulate exchange rate updates
+            updateExchangeRates();
+            setInterval(updateExchangeRates, 30000);
+
+            // Initial QR code
+            updateQRCode();
+        });
+
+        // Update QR Code
+        function updateQRCode() {
+            const cryptoData = cryptoAddresses[currentCrypto];
+            let amountInCrypto;
+            
+            // Convert amount to crypto
+            if (currentCrypto === 'bitcoin') {
+                amountInCrypto = (currentAmount * exchangeRates.BTC).toFixed(8);
+            } else if (currentCrypto === 'ethereum') {
+                amountInCrypto = (currentAmount * exchangeRates.ETH).toFixed(6);
+            } else {
+                amountInCrypto = currentAmount.toFixed(2);
+            }
+            
+            // Generate payment URI based on cryptocurrency
+            let paymentURI = '';
+            if (currentCrypto === 'bitcoin') {
+                paymentURI = `bitcoin:${cryptoData.address}?amount=${amountInCrypto}&label=MedTest%20Donation&message=Thank%20you%20for%20supporting%20medical%20safety`;
+            } else if (currentCrypto === 'ethereum') {
+                paymentURI = `ethereum:${cryptoData.address}?value=${amountInCrypto * 1e18}&label=MedTest%20Donation`;
+            } else {
+                paymentURI = `ethereum:${cryptoData.address}?value=0&label=MedTest%20Donation`;
+            }
+            
+            // Update address display
+            document.getElementById('address-text').textContent = cryptoData.address;
+            
+            // Update conversion rate display
+            const rateElement = document.getElementById('conversion-rate');
+            if (currentCrypto === 'bitcoin') {
+                rateElement.textContent = `$${currentAmount} ≈ ${amountInCrypto} BTC`;
+            } else if (currentCrypto === 'ethereum') {
+                rateElement.textContent = `$${currentAmount} ≈ ${amountInCrypto} ETH`;
+            } else {
+                rateElement.textContent = `$${currentAmount} = ${amountInCrypto} USDT`;
+            }
+            
+            // Generate QR code
+            const qrContainer = document.getElementById('qrcode');
+            qrContainer.innerHTML = '';
+            
+            QRCode.toCanvas(qrContainer, paymentURI, {
+                width: 200,
+                height: 200,
+                color: {
+                    dark: '#000000',
+                    light: '#FFFFFF'
+                }
+            }, function(error) {
+                if (error) {
+                    console.error(error);
+                    qrContainer.innerHTML = `
+                        <div style="color: #718096; padding: 2rem;">
+                            <div style="font-size: 3rem;">⚠️</div>
+                            <div>QR Code generation failed</div>
+                            <div style="font-size: 0.8rem; margin-top: 1rem;">Please copy address manually</div>
+                        </div>
+                    `;
+                }
+            });
+        }
+
+        // Update exchange rates (simulated)
+        function updateExchangeRates() {
+            // Simulate slight fluctuations
+            exchangeRates.BTC = 0.000021 * (0.995 + Math.random() * 0.01);
+            exchangeRates.ETH = 0.00042 * (0.995 + Math.random() * 0.01);
+            
+            // Update timestamp
+            document.getElementById('rate-time').textContent = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            
+            // Update QR code if crypto is selected
+            if (document.getElementById('crypto-btn').classList.contains('active')) {
+                updateQRCode();
+            }
+        }
+
+        // Copy address to clipboard
+        function copyAddress() {
+            const address = document.getElementById('address-text').textContent;
+            navigator.clipboard.writeText(address).then(() => {
+                const copyBtn = document.querySelector('.copy-btn');
+                const originalHTML = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<i>✓</i> Copied!';
+                copyBtn.style.background = 'var(--success)';
+                
+                setTimeout(() => {
+                    copyBtn.innerHTML = originalHTML;
+                    copyBtn.style.background = 'var(--secondary)';
+                }, 2000);
+            });
+        }
+
+        // Contact for investment
+        function contactInvestment(tier) {
+            const subject = `Investment Inquiry: ${tier}`;
+            const body = `Dear MedTest Initiative Team,\n\nI am interested in learning more about the ${tier} investment opportunity.\n\nPlease send me more information.\n\nBest regards,\n[Your Name]`;
+            
+            // Open email client
+            window.location.href = `mailto:investments@medtestinitiative.org?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+
+        // Schedule a call
+        function scheduleCall() {
+            // Open calendly or similar service
+            const calendlyURL = "https://calendly.com/medtest-initiative/30min";
+            window.open(calendlyURL, '_blank');
+            
+            // Fallback
+            if (!calendlyURL) {
+                alert("Please email us at appointments@medtestinitiative.org to schedule a consultation.");
+            }
+        }
+
+        // Add live donation tracker
+        function simulateLiveDonations() {
+            const totalElement = document.querySelector('.donate-hero .amount-buttons + div div:first-child div:first-child');
+            if (totalElement) {
+                let currentTotal = 24850;
+                
+                setInterval(() => {
+                    // Random small donation every 30 seconds
+                    if (Math.random() > 0.7) {
+                        const donation = Math.floor(Math.random() * 100) + 25;
+                        currentTotal += donation;
+                        totalElement.textContent = `$${currentTotal.toLocaleString()}`;
+                        
+                        // Show notification
+                        showDonationNotification(donation);
+                    }
+                }, 30000);
+            }
+        }
+
+        function showDonationNotification(amount) {
+            const notification = document.createElement('div');
+            notification.innerHTML = `
+                <div style="position: fixed; bottom: 20px; right: 20px; background: var(--success); color: white; padding: 1rem; border-radius: 10px; z-index: 1000; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+                    <strong>New Donation! 🎉</strong>
+                    <div style="font-size: 1.2rem; margin-top: 0.5rem;">$${amount} received</div>
+                </div>
+            `;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 5000);
+        }
+
+        // Initialize donation tracker
+        setTimeout(simulateLiveDonations, 5000);
+
+        // Add share functionality
+        function sharePage() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Support Medical Safety Testing',
+                    text: 'Join me in supporting independent medical safety testing',
+                    url: window.location.href
+                });
+            } else {
+                // Fallback
+                const shareText = `I'm supporting medical safety testing at ${window.location.href}`;
+                navigator.clipboard.writeText(shareText).then(() => {
+                    alert('Link copied to clipboard! Share it with your network.');
+                });
+            }
+        }
+
+        // Add share button
+        window.addEventListener('load', function() {
+            const heroContent = document.querySelector('.hero-content');
+            if (heroContent) {
+                const shareBtn = document.createElement('button');
+                shareBtn.innerHTML = '📤 Share This Cause';
+                shareBtn.style.background = 'rgba(255,255,255,0.2)';
+                shareBtn.style.color = 'white';
+                shareBtn.style.border = '1px solid rgba(255,255,255,0.3)';
+                shareBtn.style.padding = '0.7rem 1.5rem';
+                shareBtn.style.borderRadius = '25px';
+                shareBtn.style.marginTop = '1rem';
+                shareBtn.style.cursor = 'pointer';
+                shareBtn.style.fontSize = '0.95rem';
+                shareBtn.onclick = sharePage;
+                
+                heroContent.appendChild(shareBtn);
+            }
+        });
+    </script>
+</body>
+</html>
